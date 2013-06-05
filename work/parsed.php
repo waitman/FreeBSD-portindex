@@ -11,6 +11,9 @@ if(!defined('STDIN')) {
 	exit();
 }
 
+if (!file_exists('cache')) {
+	mkdir('cache') or die('Could not create cache directory.');
+}
 
 $d=`find /usr/ports/ -type d | grep -v \.svn | grep -v distfiles | grep -v packages`;
 

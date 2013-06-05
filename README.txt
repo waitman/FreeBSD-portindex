@@ -8,8 +8,8 @@ Note: the code presumes your ports are in /usr/ports
 To Use:
 1) update layout.html and style.css.
 2) update your ports. 
-3) run 'parsed.php' in work/
-4) run 'rip.php' in work/
+4) run 'parsed.php' in work/
+5) run 'rip.php' in work/
 
 Copyright 2013 by Waitman Gobble <waitman@waitman.net>
 
