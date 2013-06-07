@@ -62,8 +62,14 @@ foreach ($categories as $p=>$lass) {
 			foreach ($dr as $n=>$m) {
 				if (strstr($m,'WWW:')) {
 					$t=trim(str_replace('WWW:','',$m));
+					if (strstr($t,' ')) {
+						$th=explode(' ',$t);
+						$link=array_shift($th);
+					} else {
+						$link=$t;
+					}
 					$dr[$n]='WWW: '.
-					'<a href="'.$t.'" target="_blank">'.$t.'</a>';
+					'<a href="'.$link.'" target="_blank">'.$t.'</a>';
 				} else {
 					$dr[$n]=htmlspecialchars($m,
 					 ENT_COMPAT|ENT_HTML5,'ISO-8859-1');

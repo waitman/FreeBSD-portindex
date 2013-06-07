@@ -1,4 +1,5 @@
 body { font-size:92%; margin:0; background-image:url(/ui/hbarq.png); background-repeat:repeat-x; }
+img { border:0; }
 #wrap { width: 1080px; margin: auto; text-align:left; }
 #content { padding:10px; }
 #copyright { font-size: 90%; border-top:2px solid #ccc; padding:10px; }
