@@ -8,6 +8,15 @@
 
 $search_results = unserialize(join('',file('work/cache/search_results.txt')));
 $q = trim(strtolower($_REQUEST['se']));
+
+/* Based on httpd log analysis some people type the category 
+   for example, www/nginx, simple work-around is to explode and pop off
+   the outside text */
+if (strstr($q,'/')) {
+	$dx=explode('/',$q);
+	$q=array_pop($dx);
+}
+
 $sl = strlen($q);
 
 /* this should work even if the user does not use the jquery auto-complete
