@@ -1,14 +1,18 @@
 <?php
 
-$max_page = 500;
-
-/* ini_set('memory_limit', '4000M'); */
-
 /* rip.php
    Copyright 2013 Waitman Gobble <waitman@waitman.net>
    LICENSE INFO IN README.txt
 */
 
+/* store search results here */
+$search_results = array();
+/* maximum ports per category page */
+$max_page = 500;
+
+/* ini_set('memory_limit', '4000M'); */
+
+/* don't run from http */
 if(!defined('STDIN')) {
         echo 'Run from command line only.';
         exit();
@@ -29,9 +33,12 @@ function parsedate($v) {
 	}
 }
 
+/* load categories array */
 $categories = unserialize(join('',file('categories.txt')));
+/* load ports array */
 $ports = unserialize(join('',file('ports.txt')));
 
+/* build category pages */
 foreach ($categories as $p=>$lass) {
 	$content = '<h1>FreeBSD Ports Index: Category &quot;'.htmlspecialchars($p).
 		'&quot; ('.count($ports[$p]).')</h1>
@@ -45,11 +52,15 @@ foreach ($categories as $p=>$lass) {
 	}
 	ksort($case);
 
+	/* number of pages in this category */
 	$pages = ceil(count($ports[$p])/$max_page);
 
 	$pc=0;
 	$col=0;
 	$t_content='';
+	/* add results to temp array and store in search_array 
+	   after page write */
+	$cache_results=array();
 
 	foreach ($case as $ll=>$k) {
 
@@ -59,7 +70,7 @@ foreach ($categories as $p=>$lass) {
 		} else {
 			$desc = join('',file($path.'/pkg-descr'));
 			$dr=explode("\n",$desc);
-			foreach ($dr as $n=>$m) {
+			foreach ($dr as $n=>$m) {					/* hypertext links */
 				if (strstr($m,'WWW:')) {
 					$t=trim(str_replace('WWW:','',$m));
 					if (strstr($t,' ')) {
@@ -96,6 +107,8 @@ foreach ($categories as $p=>$lass) {
 			}
 		}
 		$make_link = '<small><a href="/FreeBSD-ports/make.php/'.$p.'/'.$k.'">'.$k.' port info</a></small>';
+		$cache_results[$k]=true;
+		
 		/* check lint cache dir exists */
 		if (!file_exists('cache/lint/'.$p)) mkdir('cache/lint/'.$p);
 		$do_lint=true;
@@ -118,7 +131,11 @@ foreach ($categories as $p=>$lass) {
 			fwrite($fp,$version.'-'.$rev);
 			fclose($fp);
 		}
-		$t_content .= '<div><div class="hd"><div class="tit">'.$k.'</div>
+		/* IRL the anchor should be around the title, but doing that way always put the title 
+		   up too close to the frame border of the browser. Moving the anchor back a bit gives 
+		   some clearance. We are adding an anchor here to link to from the search results. 
+		   The search is simple, with a link to the port on it's category page. */
+		$t_content .= '<a name="'.$k.'"></a><div><div class="hd"><div class="tit">'.$k.'</div>
 <div class="date">'.$mod_date.'</div><div class="version">Ver: '.$version.$rev.
 '<br />'.$make_link.'</div></div>
 <pre>'.$desc.'</pre>
@@ -143,10 +160,16 @@ foreach ($categories as $p=>$lass) {
 			$fp = fopen('cache/'.$p.$p_link.'.html','w');
 			fwrite($fp,$this_page);
 			fclose($fp);
+			/* add to search results array */
+			foreach ($cache_results as $io=>$ip) {
+				$search_results[strtolower($io)]='/FreeBSD-ports/port.php/'.$p.str_replace('-p','?p',$p_link).'#'.$io;
+			}
+		
 			echo $p.$p_link.' done.'."\n";
 			++$pc;		/* increment page number */
 			$col=0;		/* reset counter */
 			$t_content='';
+			$cache_results = array();
 		}
 	}
 	/* downside is we have to do it again for leftovers */
@@ -172,11 +195,21 @@ foreach ($categories as $p=>$lass) {
 		$fp = fopen('cache/'.$p.$p_link.'.html','w');
 		fwrite($fp,$this_page);
 		fclose($fp);
+		/* add to search results array */
+		foreach ($cache_results as $io=>$ip) {
+			$search_results[strtolower($io)]='/FreeBSD-ports/port.php/'.$p.str_replace('-p','?p',$p_link).'#'.$io;
+		}
 		echo $p.$p_link.' done.'."\n";
 		++$pc;		/* increment page number */
 		$col=0;		/* reset counter */
 	
 	}
 }
+
+/* save search_results array to disk */
+ksort($search_results);
+$fp=fopen('cache/search_results.txt','w');
+fwrite($fp,serialize($search_results));
+fclose($fp);
 
 //EOF

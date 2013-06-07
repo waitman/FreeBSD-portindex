@@ -8,12 +8,16 @@
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" type="text/css" media="all" href="/FreeBSD-ports/style.css">
 <link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 480px)" href="/FreeBSD-ports/mobile.css">
+<link rel="stylesheet" href="/FreeBSD-ports/jquery-ui.css">
+<script type="text/javascript" src="/FreeBSD-ports/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/FreeBSD-ports/jquery-ui.js"></script>
+<script>$(function(){var cache={};$("#se").autocomplete({minLength:2,source:function(request,response){var term=request.term;if(term in cache){response(cache[term]);return}$.getJSON("/FreeBSD-ports/patch.php",request,function(data,status,xhr){cache[term]=data;response(data)})}})});</script>
 </head>
 
 <body>
 <div id="wrap">
 <div><a href="https://dx.burplex.com/"><img src="https://dx.burplex.com/burplex.png" alt="BURPLEX SYSTEMS" /></a></div>
-<div id="content"><!--Content--><div id="copyright"><small><a href="http://www.FreeBSD.org/">FreeBSD</a> Ports Index/Reference Compiled by Waitman Gobble <a href="mailto:waitman@waitman.net">waitman@waitman.net</a>, <a href="https://dx.burplex.com/">BURPLEX SYSTEMS</a>, San Jose California, USA. Updated nightly.<br />Fork Me on GitHub: <a href="https://github.com/waitman/FreeBSD-portindex">https://github.com/waitman/FreeBSD-portindex</a><br />This reference is intended to be educational, however no warranties are implied. Use at your own risk.</small></div>
+<div id="content"><div class="ui-widget"><form method="get" action="/FreeBSD-ports/red.php" id="daform"><label for="se">Port Search: </label><input id="se" name="se" /><input type="submit" name="a" value="Search" /></form></div><!--Content--><div id="copyright"><small><a href="http://www.FreeBSD.org/">FreeBSD</a> Ports Index/Reference Compiled by Waitman Gobble <a href="mailto:waitman@waitman.net">waitman@waitman.net</a>, <a href="https://dx.burplex.com/">BURPLEX SYSTEMS</a>, San Jose California, USA. Updated nightly.<br />Fork Me on GitHub: <a href="https://github.com/waitman/FreeBSD-portindex">https://github.com/waitman/FreeBSD-portindex</a><br />This reference is intended to be educational, however no warranties are implied. Use at your own risk.</small></div>
 </div>
 </div>
 </body>

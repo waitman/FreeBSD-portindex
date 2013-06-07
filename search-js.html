@@ -1,0 +1,25 @@
+<!--
+	snipped from layout uncompressed
+	NOT USED, here if you want to edit.
+-->
+
+<script>
+$(function() {
+	var cache = {};
+	$("#se").autocomplete({
+		minLength: 2,
+		source: function( request, response ) {
+			var term = request.term;
+			if ( term in cache ) {
+				response( cache[ term ] );
+				return;
+			}
+			$.getJSON( "/FreeBSD-ports/patch.php", request, 
+				function( data, status, xhr ) {
+				cache[ term ] = data;
+				response( data );
+			});
+		}
+	});
+});
+</script>

@@ -1,4 +1,4 @@
-body { font-size:92%; margin:0; background-image:url(/ui/hbarq.png); background-repeat:repeat-x; }
+body { font-size:92%; margin:0; background-image:url(/FreeBSD-ports/ui/hbarq.png); background-repeat:repeat-x; }
 img { border:0; }
 #wrap { width: 1080px; margin: auto; text-align:left; }
 #content { padding:10px; }
@@ -16,3 +16,4 @@ pre { clear:both; margin-left:50px;padding-top:20px; padding-bottom:20px; }
 table { border-collapse:collapse; }
 td { padding: 3px; border: 2px solid #ccc; }
 .nw { white-space: nowrap; }
+.ui-autocomplete-loading { background: white url('/FreeBSD-ports/ui/ui-anim_basic_16x16.gif') right center no-repeat; }
