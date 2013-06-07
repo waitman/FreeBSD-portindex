@@ -12,3 +12,7 @@ pre { clear:both; margin-left:50px;padding-top:20px; padding-bottom:20px; }
 .page { font-size:80%;width:75px;background-color:#ccc;padding:3px;margin:5px;float:left; }
 .pagey { font-size:80%;width:75px;background-color:#eee;padding:3px;margin:5px;float:left; }
 .br { clear:both; }
+.prx { width:1000px; }
+table { border-collapse:collapse; }
+td { padding: 3px; border: 2px solid #ccc; }
+.nw { white-space: nowrap; }

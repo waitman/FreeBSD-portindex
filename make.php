@@ -41,7 +41,7 @@ please read the portlint output, below.</em></small></p>
 		htmlspecialchars($p).'</h1><p><a href="/FreeBSD-ports/index.php">Main Menu</a></p>';
 	$content.= '<hr /><h2>Makefile:</h2><pre>'.$make.'</pre><hr />'.$lint.
 		'<h2>Associated PR from GNATS:</h2><br />
-<table border="1" cellspacing="0" cellpadding="3" width="1000" id="prx">
+<table id="prx">
 <tr class="hi"><td><strong>Status</strong></td>
 <td><strong>Date</strong></td>
 <td><strong>Last Activity</strong></td>
@@ -58,8 +58,8 @@ please read the portlint output, below.</em></small></p>
 	$res = $db->query($sql);
 	while ($row = $res->fetchArray()) {
 		$content .= '<tr><td>'.$row['status'].' </td>
-<td nowrap="nowrap">'.$row['postdate'].' </td>
-<td nowrap="nowrap">'.$row['last_activity'].' </td>
+<td class="nw">'.$row['postdate'].' </td>
+<td class="nw">'.$row['last_activity'].' </td>
 <td><a href="/FreeBSD-ports/pr.php/'.$c.'/'.$p.'/'.str_replace('ports/','',$row['pr']).'">'.$row['pr'].'</a> </td>
 <td>'.$row['who'].' </td>
 <td>'.$row['desc'].' </td>
