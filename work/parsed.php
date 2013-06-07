@@ -13,7 +13,14 @@ if(!defined('STDIN')) {
 
 if (!file_exists('cache')) {
 	mkdir('cache') or die('Could not create cache directory.');
+	mkdir('cache/lint') or die('Coult not create cache/lint directory.');
 }
+
+/* get svn version */
+$t=`svnversion /usr/ports/`;
+$fp=fopen('version.txt','w');
+fwrite($fp,$t);
+fclose($fp);
 
 $d=`find /usr/ports/ -type d | grep -v \.svn | grep -v distfiles | grep -v packages`;
 

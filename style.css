@@ -1,4 +1,4 @@
-body { font-size:92%; margin:0; }
+body { font-size:92%; margin:0; background-image:url(/ui/hbarq.png); background-repeat:repeat-x; }
 #wrap { width: 1080px; margin: auto; text-align:left; }
 #content { padding:10px; }
 #copyright { font-size: 90%; border-top:2px solid #ccc; padding:10px; }
@@ -8,3 +8,6 @@ body { font-size:92%; margin:0; }
 .version { width:350px; text-align:right; float:left; }
 pre { clear:both; margin-left:50px;padding-top:20px; padding-bottom:20px; }
 .col { width: 250px; float:left; }
+.page { font-size:80%;width:75px;background-color:#ccc;padding:3px;margin:5px;float:left; }
+.pagey { font-size:80%;width:75px;background-color:#eee;padding:3px;margin:5px;float:left; }
+.br { clear:both; }

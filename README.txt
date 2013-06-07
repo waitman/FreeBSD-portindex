@@ -11,6 +11,23 @@ To Use:
 4) run 'parsed.php' in work/
 5) run 'rip.php' in work/
 
+Installed Ports and Extra Data
+
+ports: devel/subversion is used to update your ports tree. This program uses 
+the svnversion program from that port.
+
+If you want to use the pr feature, install ports-mgmt/prhistory from ports, 
+and download the ports-related GNATS database files from FreeBSD. These files 
+are presently 1.5G. If you would like to have the files sent to you on DVD or 
+thumbdrive, drop me a line. The software is hard-coded to use the SQLite3
+database from prhistory, which is located in /var/db/ports-pr.db, and the 
+GNATS files located in /b/ports. Update the code to match your system
+accordingly.
+
+If you want to use the portlint checker feature, install ports-mgmt/portlint. 
+
+COPYING INFORMATION
+
 Copyright 2013 by Waitman Gobble <waitman@waitman.net>
 
 Redistribution and use in source and binary forms, with or without

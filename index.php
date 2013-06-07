@@ -5,8 +5,13 @@
    LICENSE INFO IN README.txt
 */
 
+/* get svn version */
+$rev = join('',file('work/version.txt'));
+$mod = gmdate('r',filemtime('work/version.txt'));
+
 $content = '
-<h1>FreeBSD Ports</h1>
+<h1>FreeBSD Ports Index</h1>
+<p>Ports SVN repository version currently on this machine: '.trim($rev).'. Index was last generated '.$mod.'</p>
 ';
 $categories = unserialize(join('',file('work/categories.txt')));
 $ports = unserialize(join('',file('work/ports.txt')));
@@ -27,3 +32,4 @@ $content .= '</div>
 ';
 include('output.php');
 
+//EOF

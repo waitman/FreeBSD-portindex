@@ -7,5 +7,7 @@
 
 $layout=join('',file('layout.html'));
 $html=str_replace('<!--Content-->',$content,$layout);
-$html=str_replace('<title>','<title>'.$title,$html);
+$html=str_replace('<title>','<title>'.trim($title).' ',$html);
 echo $html;
+
+//EOF
