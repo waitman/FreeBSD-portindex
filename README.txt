@@ -13,6 +13,12 @@ To Use:
 4) run 'parsed.php' in work/
 5) run 'rip.php' in work/
 
+The first time you run 'rip.php' it will take a LONG time, because it is 
+caching the results of portlint. However, after the first run it will run
+much faster. If you don't care about portlint results you can comment that
+part out of rip.php, the scripts that display the file will silently 
+ignore it and display nothing about portlint.
+
 Installed Ports and Extra Data
 
 ports: devel/subversion is used to update your ports tree. This program uses 
