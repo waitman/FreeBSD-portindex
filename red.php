@@ -7,7 +7,7 @@
 */
 
 $search_results = unserialize(join('',file('work/cache/search_results.txt')));
-$q = trim(strtolower($_REQUEST['se']));
+$q = trim(strtolower($_POST['se']));
 
 /* Based on httpd log analysis some people type the category 
    for example, www/nginx, simple work-around is to explode and pop off
